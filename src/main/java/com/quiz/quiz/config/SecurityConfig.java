@@ -16,6 +16,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    //@Autowired
+    //private FilterToken filterToken;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
