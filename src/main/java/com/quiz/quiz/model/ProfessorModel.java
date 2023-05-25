@@ -15,8 +15,4 @@ public class ProfessorModel extends UsuarioModel {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "quiz_id")
     private List<QuizModel> quizzes;
-
-    public void addQuiz(QuizModel quiz) {
-        this.quizzes.add(quiz);
-    }
 }

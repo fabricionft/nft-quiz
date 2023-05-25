@@ -14,22 +14,52 @@ import java.util.Optional;
 public class QuizService {
 
     @Autowired
-    private ProfessorRepository usuarioRepository;
+    private ProfessorRepository professorRepository;
 
     @Autowired
     private QuizRepository quizzesRepository;
 
-    public ProfessorModel adcionarQuiz(Long codigo, QuizModel quiz){
-        ProfessorModel usuario = verificarSeUsuarioExistePorID(codigo);
-
-        //usuario.addQuiz(quiz);
-        return  usuarioRepository.save(usuario);
+    public QuizModel buscarQuizPorTag(Integer tag){
+        return  verificarSeQuizExistePorTag(tag);
     }
 
+    public ProfessorModel adcionarQuiz(Long codigo){
+        ProfessorModel usuario = verificarSeProfessorExistePorID(codigo);
+        QuizModel quiz = new QuizModel(definirNovaTagSemRepeticao());
+        usuario.getQuizzes().add(quiz);
+        return  professorRepository.save(usuario);
+    }
+
+    public String excluirQuiz(Long codigo){
+        quizzesRepository.delete(verificarSeQuizExistePorID(codigo));
+        return "Quiz excluido com sucesso!";
+    }
+
+    private Integer definirNovaTagSemRepeticao(){
+        Integer numero = ((int)(Math.random() * 8999) + 1000);
+        while(quizzesRepository.buscarPorTag(numero).isPresent())
+            numero = ((int)(Math.random() * 8999) + 1000);
+
+        return numero;
+    }
+
+
     //Validações
-    public ProfessorModel verificarSeUsuarioExistePorID(Long codigo){
-        Optional<ProfessorModel> usuario = usuarioRepository.buscarPorID(codigo);
+    private ProfessorModel verificarSeProfessorExistePorID(Long codigo){
+        Optional<ProfessorModel> usuario = professorRepository.buscarPorID(codigo);
         if(usuario.isEmpty()) throw  new RequestException("Usuário inexistente");
         else return  usuario.get();
+    }
+
+    private QuizModel verificarSeQuizExistePorID(Long codigo){
+        Optional<QuizModel> quiz = quizzesRepository.buscarPorID(codigo);
+        if(quiz.isEmpty()) throw  new RequestException("Este quiz não existe");
+        else return quiz.get();
+    }
+
+    private QuizModel verificarSeQuizExistePorTag(Integer tag){
+        Optional<QuizModel> quiz = quizzesRepository.buscarPorTag(tag);
+        if(quiz.isEmpty()) throw  new RequestException("Este quiz não existe");
+        else return quiz.get();
     }
 }

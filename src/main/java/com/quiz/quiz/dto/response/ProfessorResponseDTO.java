@@ -11,6 +11,7 @@ import java.util.List;
 public class ProfessorResponseDTO {
 
     private Long codigo;
+    private String tipoConta;
     private String nome;
     private String usuario;
     private List<QuizModel> quizzes;

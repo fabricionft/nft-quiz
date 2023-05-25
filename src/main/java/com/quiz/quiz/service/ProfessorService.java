@@ -33,7 +33,7 @@ public class ProfessorService {
     }
 
     public ProfessorModel salvarProfessor(ProfessorModel professor){
-        if(professorRepository.buscarPorUsuario(professor.getUsuario()).isPresent())
+        if(professorRepository.buscarPorUsuario(professor.getUsuario()).isPresent() && professor.getCodigo() == null)
             throw new RequestException("O usuário digitado já existe, por favor digite outro!");
 
         professor.setSenha(encoder.encode(professor.getSenha()));

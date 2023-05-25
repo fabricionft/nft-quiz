@@ -1,7 +1,9 @@
 package com.quiz.quiz.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -10,19 +12,21 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuizModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
 
     private Long quiz_id;
-    private Integer idade;
+    private Integer tag;
+    private Integer quantidadeDePerguntas = 0;
 
     @ElementCollection
     List<PerguntaModel> perguntas;
 
-    public void addPergunta(PerguntaModel pergunta){
-        this.perguntas.add(pergunta);
+    public QuizModel (Integer tag){
+        this.tag = tag;
     }
 }

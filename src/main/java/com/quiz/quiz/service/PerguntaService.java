@@ -8,8 +8,6 @@ import com.quiz.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,35 +19,54 @@ public class PerguntaService {
     @Autowired
     private PerguntaRepository perguntaRepository;
 
-    public QuizModel adcionarPergunta(Long codigo){
+    public QuizModel adcionarPergunta(Long codigo, PerguntaModel pergunta){
         QuizModel quiz = verificarSeQuizExistePorID(codigo);
 
-        List<String> alternativas = new ArrayList<>();
+        perguntaRepository.save(pergunta);
+        quiz.getPerguntas().add(pergunta);
+        quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() + 1);
 
-        alternativas.add("2");
-        alternativas.add("9");
-        alternativas.add("3");
-        alternativas.add("6");
-
-        PerguntaModel pergunta = new PerguntaModel(
-            null,
-            "Quanto é 1 + 1?",
-            alternativas,
-            2
-        );
-
-        //perguntaRepository.save(pergunta);
-
-        quiz.addPergunta(pergunta);
-
-        return quiz;
-        //return quizRepository.save(quiz);
+        return quizRepository.save(quiz);
     }
+
+    public QuizModel alterarPergunta(Long codigoQuiz, Long codigoPergunta, PerguntaModel novaPergunta){
+        QuizModel quiz = verificarSeQuizExistePorID(codigoQuiz);
+        int index = 0;
+
+        for(PerguntaModel pergunta: quiz.getPerguntas()) {
+            if (pergunta.getCodigo().equals(codigoPergunta)) {
+                perguntaRepository.save(novaPergunta);
+                quiz.getPerguntas().set(index, novaPergunta);
+                perguntaRepository.delete(pergunta);
+            }
+            index++;
+        }
+
+        return quizRepository.save(quiz);
+    }
+
+    public QuizModel excluirPergunta(Long codigoQUiz, Long codigoPergunta){
+        QuizModel quiz = verificarSeQuizExistePorID(codigoQUiz);
+        PerguntaModel pergunta = verificarSePerguntaExistePorID(codigoPergunta);
+
+        quiz.getPerguntas().remove(pergunta);
+        perguntaRepository.delete(pergunta);
+
+        quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() - 1);
+        return quizRepository.save(quiz);
+    }
+
 
     //Validações
     public QuizModel verificarSeQuizExistePorID(Long codigo){
         Optional<QuizModel> quiz = quizRepository.buscarPorID(codigo);
         if(quiz.isEmpty()) throw  new RequestException("Quiz inexistente");
         else return quiz.get();
+    }
+
+    public PerguntaModel verificarSePerguntaExistePorID(Long codigo){
+        Optional<PerguntaModel> pergunta = perguntaRepository.buscarPorID(codigo);
+        if(pergunta.isEmpty()) throw  new RequestException("Pergunta inexistente");
+        else return pergunta.get();
     }
 }
