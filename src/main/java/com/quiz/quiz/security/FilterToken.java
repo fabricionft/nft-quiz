@@ -1,7 +1,7 @@
 package com.quiz.quiz.security;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.quiz.quiz.repository.ProfessorRepository;
+import com.quiz.quiz.repository.UsuarioRepository;
 import com.quiz.quiz.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,7 +23,7 @@ public class FilterToken extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private ProfessorRepository professorRepository;
+    private UsuarioRepository usuarioRepository;
 
     @SneakyThrows
     @Override
@@ -38,7 +38,7 @@ public class FilterToken extends OncePerRequestFilter {
 
                 var subject = tokenService.getSubject(token);
 
-                var usuario = professorRepository.buscarPorUsuario(subject).get();
+                var usuario = usuarioRepository.buscarPorUsuario(subject).get();
 
                 var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 

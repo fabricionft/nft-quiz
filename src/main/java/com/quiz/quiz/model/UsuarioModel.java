@@ -10,24 +10,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Table(name = "usuarios")
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class UsuarioModel implements UserDetails {
+public class UsuarioModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
 
-    private String tipoConta;
     private String nome;
     private String usuario;
     private String senha;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "quiz_id")
+    private List<QuizModel> quizzes;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "resultado_id")
+    private List<ResultadoModel> historicoDeResultados;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(tipoConta));
+        return List.of(new SimpleGrantedAuthority(null));
     }
 
     @Override

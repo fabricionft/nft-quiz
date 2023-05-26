@@ -1,7 +1,10 @@
 package com.quiz.quiz.controller;
 
-import com.quiz.quiz.dto.response.ProfessorResponseDTO;
-import com.quiz.quiz.model.ProfessorModel;
+import com.quiz.quiz.dto.request.QuizRequestDTO;
+import com.quiz.quiz.dto.response.QuizResponseDTO;
+import com.quiz.quiz.dto.response.UsuarioResponseDTO;
+import com.quiz.quiz.model.QuizModel;
+import com.quiz.quiz.model.UsuarioModel;
 import com.quiz.quiz.service.QuizService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +22,27 @@ public class QuizController {
     @Autowired
     private ModelMapper modelMapper;
 
-    private ProfessorResponseDTO converterEmReponseDTO(ProfessorModel professor){
-        return  modelMapper.map(professor, ProfessorResponseDTO.class);
+    private UsuarioResponseDTO converterEmUsuarioResponseDTO(UsuarioModel usuario){
+        return  modelMapper.map(usuario, UsuarioResponseDTO.class);
+    }
+
+    private QuizResponseDTO conveterEmQuizResponseDTO(QuizModel quiz){
+        return modelMapper.map(quiz, QuizResponseDTO.class);
     }
 
 
     @GetMapping(path = "/{tag}")
-    public ResponseEntity<?> pesquisarQuiz(@PathVariable Integer tag){
-        return  new ResponseEntity<>(quizService.buscarQuizPorTag(tag), HttpStatus.OK);
+    public ResponseEntity<?> pesquisarQuizPorTag(@PathVariable Integer tag){
+        return  new ResponseEntity<>(conveterEmQuizResponseDTO(quizService.buscarQuizPorTag(tag)), HttpStatus.OK);
     }
 
     @PostMapping(path = "/{codigoProfessor}")
-    //@PreAuthorize("hasRole('PROFESSOR')")
-    public ResponseEntity<?> adcionarQuiz(@PathVariable Long codigoProfessor){
-        return  new ResponseEntity<>(converterEmReponseDTO(quizService.adcionarQuiz(codigoProfessor)), HttpStatus.CREATED);
+    public ResponseEntity<?> adcionarQuiz(@PathVariable Long codigoProfessor,
+                                          @RequestBody QuizRequestDTO quizDTO){
+        return  new ResponseEntity<>(converterEmUsuarioResponseDTO(quizService.adcionarQuiz(codigoProfessor, quizDTO)), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{codigo}")
-    //@PreAuthorize("hasRole('PROFESSOR')")
     public ResponseEntity<?> excluirQuiz(@PathVariable Long codigo){
         return  new ResponseEntity<>(quizService.excluirQuiz(codigo), HttpStatus.OK);
     }
