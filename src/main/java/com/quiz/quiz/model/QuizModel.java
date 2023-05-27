@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class QuizModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private Long quiz_id;
 

@@ -34,7 +34,7 @@ public class PerguntaService {
     public QuizModel adcionarPergunta(Long codigoQuiz, PerguntaModel pergunta){
         verificarSeARespostaEPossivel(pergunta);
 
-        QuizModel quiz = buscarQuizPorID(codigoQuiz);
+        QuizModel quiz = buscarQuizPorCodigo(codigoQuiz);
 
         quiz.getPerguntas().add(pergunta);
         quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() + 1);
@@ -43,12 +43,12 @@ public class PerguntaService {
     }
 
     public boolean responderPergunta(Long codigoPergunta, Integer resposta){
-        PerguntaModel pergunta = buscarPerguntaPorID(codigoPergunta);
+        PerguntaModel pergunta = buscarPerguntaPorCodigo(codigoPergunta);
         return (pergunta.getAlternativaCorreta().equals(resposta));
     }
 
     public UsuarioModel gerarResultados(Long codigoUsuario, Long codigoQuiz, List<Integer> respostas){
-        QuizModel quiz = buscarQuizPorID(codigoQuiz);
+        QuizModel quiz = buscarQuizPorCodigo(codigoQuiz);
         if(respostas.size() != quiz.getQuantidadeDePerguntas())
             throw new RequestException("A quantidade de respostas deve ser igual a quantidade de questões!");
 
@@ -66,7 +66,7 @@ public class PerguntaService {
         );
 
         boolean aindaNaoPossuiNoHistorico = true;
-        UsuarioModel usuario = buscarUsuarioPorID(codigoUsuario);
+        UsuarioModel usuario = buscarUsuarioPorCodigo(codigoUsuario);
         if(usuario.getHistoricoDeResultados().size() == 0) usuario.getHistoricoDeResultados().add(resultado);
         else{
             for(ResultadoModel result: usuario.getHistoricoDeResultados())
@@ -80,7 +80,7 @@ public class PerguntaService {
     public PerguntaModel alterarPergunta(Long codigoPergunta, PerguntaModel novaPergunta){
         verificarSeARespostaEPossivel(novaPergunta);
 
-        PerguntaModel pergunta = buscarPerguntaPorID(codigoPergunta);
+        PerguntaModel pergunta = buscarPerguntaPorCodigo(codigoPergunta);
 
         pergunta.setQuestao(novaPergunta.getQuestao());
         pergunta.setAlternativas(novaPergunta.getAlternativas());
@@ -90,8 +90,8 @@ public class PerguntaService {
     }
 
     public QuizModel excluirPergunta( Long codigoQuiz, Long codigoPergunta){
-        QuizModel quiz = buscarQuizPorID(codigoQuiz);
-        PerguntaModel pergunta = buscarPerguntaPorID(codigoPergunta);
+        QuizModel quiz = buscarQuizPorCodigo(codigoQuiz);
+        PerguntaModel pergunta = buscarPerguntaPorCodigo(codigoPergunta);
 
         perguntaRepository.delete(pergunta);
         quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() - 1);
@@ -107,21 +107,18 @@ public class PerguntaService {
     }
 
     //Buscas
-    public QuizModel buscarQuizPorID(Long codigo){
-        Optional<QuizModel> quiz = quizRepository.buscarPorID(codigo);
-        if(quiz.isEmpty()) throw  new RequestException("Quiz inexistente");
-        else return quiz.get();
+    public UsuarioModel buscarUsuarioPorCodigo(Long codigo){
+        return  usuarioRepository.findByCodigo(codigo)
+                .orElseThrow(() -> new RequestException("usuario inexistente!"));
     }
 
-    public PerguntaModel buscarPerguntaPorID(Long codigo){
-        Optional<PerguntaModel> pergunta = perguntaRepository.buscarPorID(codigo);
-        if(pergunta.isEmpty()) throw  new RequestException("Pergunta inexistente");
-        else return pergunta.get();
+    public QuizModel buscarQuizPorCodigo(Long codigo){
+        return quizRepository.findByCodigo(codigo)
+               .orElseThrow(() -> new RequestException("Quiz inexistente!"));
     }
 
-    public UsuarioModel buscarUsuarioPorID(Long codigo){
-        Optional<UsuarioModel> usuario = usuarioRepository.buscarPorID(codigo);
-        if(usuario.isEmpty()) throw new RequestException("usuario inexistente!");
-        else return usuario.get();
+    public PerguntaModel buscarPerguntaPorCodigo(Long codigo) {
+        return perguntaRepository.findByCodigo(codigo)
+                .orElseThrow(() -> new RequestException("Pergunta inexistente!"));
     }
 }

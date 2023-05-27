@@ -13,7 +13,7 @@ import java.util.List;
 public class PerguntaModel {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long codigo;
     private Long pergunta_id;
 

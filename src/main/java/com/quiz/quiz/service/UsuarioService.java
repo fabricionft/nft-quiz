@@ -32,14 +32,14 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public UsuarioModel buscarUsuarioPorID(Long codigo){
-        Optional<UsuarioModel> usuario = usuarioRepository.buscarPorID(codigo);
+    public UsuarioModel buscarUsuarioPorCodigo(Long codigo){
+        Optional<UsuarioModel> usuario = usuarioRepository.findByCodigo(codigo);
         if(usuario.isEmpty()) throw new RequestException("usuario inexistente!");
         else return usuario.get();
     }
 
     public UsuarioModel salvarUsuario(UsuarioModel usuario){
-        if(usuarioRepository.buscarPorUsuario(usuario.getUsuario()).isPresent())
+        if(usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
             throw new RequestException("Este usuário já existe, por favor digite outro!");
 
         usuario.setSenha(encoder.encode(usuario.getSenha()));
@@ -62,11 +62,12 @@ public class UsuarioService {
         return  "Usuarios excluidos com sucesso!";
     }
 
-    public String excluirUsuarioPorID(Long codigo){
-        UsuarioModel usuario = buscarUsuarioPorID(codigo);
+    public String excluirUsuarioPorCodigo(Long codigo){
+        UsuarioModel usuario = buscarUsuarioPorCodigo(codigo);
         usuarioRepository.delete(usuario);
         return  "Usuario excluidos com sucesso!";
     }
+
 
     //Buscas
     private boolean validarSenha(RequestLoginDTO requestLoginDTO){
@@ -75,8 +76,7 @@ public class UsuarioService {
     }
 
     private UsuarioModel buscarUsuarioPorUsername(String username){
-        Optional<UsuarioModel> usuario = usuarioRepository.buscarPorUsuario(username);
-        if(usuario.isEmpty()) throw new RequestException("usuario inexistente!");
-        else return usuario.get();
+        return  usuarioRepository.findByUsuario(username)
+                .orElseThrow(() -> new RequestException("usuario inexistente!"));
     }
 }

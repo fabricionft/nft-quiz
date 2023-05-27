@@ -13,7 +13,7 @@ import lombok.Setter;
 public class ResultadoModel {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long codigo;
     private Long resultado_id;
 

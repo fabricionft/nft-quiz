@@ -29,24 +29,24 @@ public class UsuarioController {
 
     private List<UsuarioResponseDTO> converterEmListadeResponseDTO(List<UsuarioModel> usuarios) {
         List<UsuarioResponseDTO> usuarioDTO = new ArrayList<>();
-        for(UsuarioModel aluno: usuarios)
-            usuarioDTO.add(modelMapper.map(aluno, UsuarioResponseDTO.class));
+        for(UsuarioModel usuario: usuarios)
+            usuarioDTO.add(modelMapper.map(usuario, UsuarioResponseDTO.class));
 
         return usuarioDTO;
     }
 
     @GetMapping
-    public ResponseEntity<?> listarAlunos(){
+    public ResponseEntity<?> listarUsuarios(){
         return new ResponseEntity<>(converterEmListadeResponseDTO(usuarioService.listarUsuarios()), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{codigo}")
-    public ResponseEntity<?> buscarPorID(@PathVariable Long codigo){
-        return new ResponseEntity<>(converterEmResponseDTO(usuarioService.buscarUsuarioPorID(codigo)), HttpStatus.CREATED);
+    public ResponseEntity<?> buscarUsuarioPorCodigo(@PathVariable Long codigo){
+        return new ResponseEntity<>(converterEmResponseDTO(usuarioService.buscarUsuarioPorCodigo(codigo)), HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<?> salvarALuno(@RequestBody UsuarioModel usuario){
+    public ResponseEntity<?> salvarUsuario(@RequestBody UsuarioModel usuario){
         return new ResponseEntity<>(converterEmResponseDTO(usuarioService.salvarUsuario(usuario)), HttpStatus.CREATED);
     }
 
@@ -61,7 +61,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping(path = "/{codigo}")
-    public ResponseEntity<?> excluirAlunoPorID(@PathVariable Long codigo){
-        return new ResponseEntity<>(usuarioService.excluirUsuarioPorID(codigo), HttpStatus.CREATED);
+    public ResponseEntity<?> excluirUsuarioPorCodigo(@PathVariable Long codigo){
+        return new ResponseEntity<>(usuarioService.excluirUsuarioPorCodigo(codigo), HttpStatus.CREATED);
     }
 }

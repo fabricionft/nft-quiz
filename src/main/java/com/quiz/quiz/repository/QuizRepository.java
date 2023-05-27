@@ -10,9 +10,7 @@ import java.util.Optional;
 @Repository
 public interface QuizRepository extends JpaRepository<QuizModel, Long> {
 
-    @Query(value = "select * from quizzes where codigo = ?", nativeQuery = true)
-    Optional<QuizModel> buscarPorID(Long codigo);
+    Optional<QuizModel> findByCodigo(Long codigo);
 
-    @Query(value = "select * from quizzes where tag = ?", nativeQuery = true)
-    Optional<QuizModel> buscarPorTag(Integer tag);
+    Optional<QuizModel> findByTag(Integer tag);
 }
