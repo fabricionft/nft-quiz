@@ -27,15 +27,14 @@ public class QuizService {
 
     public UsuarioModel adcionarQuiz(Long codigoUSuario, QuizRequestDTO quizDTO){
         UsuarioModel usuario = buscarUsuarioPorCodigo(codigoUSuario);
-        QuizModel quiz = new QuizModel(
+
+        usuario.getQuizzes().add(new QuizModel(
             quizDTO.getNome(),
             quizDTO.getTema(),
             quizDTO.getDescricao(),
             definirNovaTagSemRepeticao(),
             0
-        );
-
-        usuario.getQuizzes().add(quiz);
+        ));
         return  usuarioRepository.save(usuario);
     }
 

@@ -24,10 +24,6 @@ public class PerguntaController {
     @Autowired
     private ModelMapper modelMapper;
 
-    private UsuarioResponseDTO converterEmUsuarioResponseDTO(UsuarioModel usuario){
-        return  modelMapper.map(usuario, UsuarioResponseDTO.class);
-    }
-
     private QuizResponseDTO converterEmQuizResponseDTO(QuizModel quiz){
         return modelMapper.map(quiz, QuizResponseDTO.class);
     }
@@ -43,13 +39,6 @@ public class PerguntaController {
     public ResponseEntity<?> responderPerguntas(@PathVariable Long codigo,
                                                 @PathVariable Integer resposta){
         return  new ResponseEntity<>(perguntaService.responderPergunta(codigo, resposta), HttpStatus.OK);
-    }
-
-    @PostMapping(path = "/gerarResultados/{codigoUsuario}/{codigoQuiz}")
-    public ResponseEntity<?> gerarResultados(@PathVariable Long codigoUsuario,
-                                             @PathVariable Long codigoQuiz,
-                                             @RequestBody List<Integer> respostas){
-        return new ResponseEntity<>(converterEmUsuarioResponseDTO(perguntaService.gerarResultados(codigoUsuario, codigoQuiz, respostas)), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{codigoPergunta}")

@@ -4,14 +4,12 @@ import com.quiz.quiz.dto.request.RequestLoginDTO;
 import com.quiz.quiz.dto.response.ResponseLoginDTO;
 import com.quiz.quiz.exception.RequestException;
 import com.quiz.quiz.model.UsuarioModel;
-import com.quiz.quiz.repository.QuizRepository;
 import com.quiz.quiz.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -20,22 +18,19 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private QuizRepository quizRepository;
-
-    @Autowired
     private TokenService tokenService;
 
     @Autowired
     private PasswordEncoder encoder;
+
 
     public List<UsuarioModel> listarUsuarios(){
         return usuarioRepository.findAll();
     }
 
     public UsuarioModel buscarUsuarioPorCodigo(Long codigo){
-        Optional<UsuarioModel> usuario = usuarioRepository.findByCodigo(codigo);
-        if(usuario.isEmpty()) throw new RequestException("usuario inexistente!");
-        else return usuario.get();
+        return  usuarioRepository.findByCodigo(codigo)
+                .orElseThrow(() -> new RequestException("Usuario inexistente!"));
     }
 
     public UsuarioModel salvarUsuario(UsuarioModel usuario){
@@ -77,6 +72,6 @@ public class UsuarioService {
 
     private UsuarioModel buscarUsuarioPorUsername(String username){
         return  usuarioRepository.findByUsuario(username)
-                .orElseThrow(() -> new RequestException("usuario inexistente!"));
+                .orElseThrow(() -> new RequestException("Usuario inexistente!"));
     }
 }
