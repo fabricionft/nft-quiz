@@ -1,0 +1,24 @@
+.acoesQuizzes{
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.buscar{
+  width: 150px;
+  height: 40px;
+  margin: 0;
+  background: #fff;;
+}
+
+.containerQuizzes{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .containerQuizzes{
+    justify-content: space-between;
+  }
+}

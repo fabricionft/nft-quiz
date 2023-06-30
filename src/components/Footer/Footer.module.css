@@ -1,0 +1,21 @@
+.containerFooter{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(150, 79, 250);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.icon{
+  width: 35px;
+  margin: 0 7.5px;
+  cursor: pointer;
+}
+
+.icon:hover{
+  margin-bottom: 20px;
+  filter: brightness(85%);
+}

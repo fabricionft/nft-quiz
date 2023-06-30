@@ -1,0 +1,28 @@
+.formQuiz{
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.margemFormQuiz{
+  width: 90%;
+  margin: 20px 0;
+}
+
+.inputQuiz{
+  margin-bottom: 20px;
+}
+
+.descricao{
+  height: 100px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .formQuiz{
+    width: 100%;
+  }
+}

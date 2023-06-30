@@ -1,0 +1,10 @@
+.aviso{
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(81, 77, 77);
+  height: 700px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

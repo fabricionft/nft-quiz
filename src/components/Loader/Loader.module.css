@@ -1,0 +1,14 @@
+.containerLoader{
+  margin: 0;
+  width: 90%;
+  height: 80vh;
+  position: absolute;
+  background-color: var(--elementos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading{
+  width: 60px;
+}
