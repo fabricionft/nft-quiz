@@ -63,7 +63,7 @@ public class UsuarioService {
     }
 
 
-    //Buscas
+    //Métodos privados
     private boolean validarSenha(RequestLoginDTO requestLoginDTO){
         UsuarioModel usuario = buscarUsuarioPorUsername(requestLoginDTO.getUsuario());
         return  encoder.matches(requestLoginDTO.getSenha(), usuario.getSenha());

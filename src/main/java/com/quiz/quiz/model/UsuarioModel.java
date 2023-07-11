@@ -29,7 +29,7 @@ public class UsuarioModel implements UserDetails {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "resultado_id")
-    private List<ResultadoModel> historicoDeResultados;
+    private List<HistoricoModel> historicoDeResultados;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -3,8 +3,6 @@ package com.quiz.quiz.service;
 import com.quiz.quiz.exception.RequestException;
 import com.quiz.quiz.model.PerguntaModel;
 import com.quiz.quiz.model.QuizModel;
-import com.quiz.quiz.model.ResultadoModel;
-import com.quiz.quiz.model.UsuarioModel;
 import com.quiz.quiz.repository.PerguntaRepository;
 import com.quiz.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,11 @@ public class PerguntaService {
     @Autowired
     private PerguntaRepository perguntaRepository;
 
+
+    public List<PerguntaModel> listarPerguntasDeUmQuiz(Long codigoQuiz){
+        return  perguntaRepository.listarPerguntasDeUmQUiz(codigoQuiz);
+    }
+
     public PerguntaModel buscarPerguntaPorCodigo(Long codigo) {
         return perguntaRepository.findByCodigo(codigo)
                 .orElseThrow(() -> new RequestException("Pergunta inexistente!"));
@@ -31,6 +34,7 @@ public class PerguntaService {
 
         QuizModel quiz = buscarQuizPorCodigo(codigoQuiz);
 
+        quiz.getRanking().clear();
         quiz.getPerguntas().add(pergunta);
         quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() + 1);
 
@@ -59,13 +63,14 @@ public class PerguntaService {
         PerguntaModel pergunta = buscarPerguntaPorCodigo(codigoPergunta);
 
         perguntaRepository.delete(pergunta);
+        quiz.getRanking().clear();
         quiz.setQuantidadeDePerguntas(quiz.getQuantidadeDePerguntas() - 1);
 
         return quizRepository.save(quiz);
     }
 
 
-    //Buscas
+    //Métodos privados
     private void verificarSeARespostaEPossivel(PerguntaModel pergunta){
         if(pergunta.getAlternativaCorreta() > pergunta.getAlternativas().size() || pergunta.getAlternativaCorreta() < 1)
             throw new RequestException("A resposta correta não pode ser uma alternativa inexistente!");

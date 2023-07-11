@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuizService {
@@ -22,8 +21,17 @@ public class QuizService {
     @Autowired
     private QuizRepository quizzesRepository;
 
+
     public List<QuizModel> listarQuizzes(){
-        return quizzesRepository.findAll();
+        List<QuizModel> quizzes = new ArrayList<>();
+        for(QuizModel quiz: quizzesRepository.findAll()){
+            if(quiz.getPerguntas().size() > 0) quizzes.add(quiz);
+        }
+        return quizzes;
+    }
+
+    public List<QuizModel> listarQuizzesDeUmUsuario(Long codigoUsuario){
+        return  quizzesRepository.listarQuizzesDeUmUsuario(codigoUsuario);
     }
 
     public QuizModel buscarQuizPorCodigo(Long codigo){
@@ -40,11 +48,13 @@ public class QuizService {
         UsuarioModel usuario = buscarUsuarioPorCodigo(codigoUSuario);
 
         usuario.getQuizzes().add(new QuizModel(
+            null,
             quizDTO.getNome(),
             quizDTO.getTema(),
             quizDTO.getDescricao(),
             definirNovaTagSemRepeticao(),
             0,
+            new ArrayList<>(),
             new ArrayList<>()
         ));
         return  usuarioRepository.save(usuario);
@@ -60,6 +70,13 @@ public class QuizService {
         return quizzesRepository.save(quiz);
     }
 
+    public String excluirQuizPorCodigo(Long codigo){
+        quizzesRepository.delete(buscarQuizPorCodigo(codigo));
+        return "Quiz excluido com sucesso!";
+    }
+
+
+    //Métodos privados
     private Integer definirNovaTagSemRepeticao(){
         Integer numero = ((int)(Math.random() * 8999) + 1000);
         while(quizzesRepository.findByTag(numero).isPresent())
@@ -68,13 +85,6 @@ public class QuizService {
         return numero;
     }
 
-    public String excluirQuizPorCodigo(Long codigo){
-        quizzesRepository.delete(buscarQuizPorCodigo(codigo));
-        return "Quiz excluido com sucesso!";
-    }
-
-
-    //Buscas
     private UsuarioModel buscarUsuarioPorCodigo(Long codigo) {
         return usuarioRepository.findByCodigo(codigo)
                 .orElseThrow(() -> new RequestException("usuario inexistente!"));

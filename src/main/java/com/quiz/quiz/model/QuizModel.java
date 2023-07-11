@@ -10,9 +10,10 @@ import java.util.List;
 
 @Table(name = "quizzes")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity(name = "Quiz")
 public class QuizModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +26,10 @@ public class QuizModel {
     private Integer quantidadeDePerguntas;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pergunta_id")
+    @JoinColumn(name = "perguntas_id")
     private List<PerguntaModel> perguntas;
 
-    public QuizModel(String nome, String tema, String descricao, Integer tag, Integer quantidadeDePerguntas, List<PerguntaModel> perguntas) {
-        this.nome = nome;
-        this.tema = tema;
-        this.descricao = descricao;
-        this.tag = tag;
-        this.quantidadeDePerguntas = quantidadeDePerguntas;
-        this.perguntas = perguntas;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ranking_id")
+    private List<RankingModel> ranking;
 }

@@ -2,7 +2,7 @@ package com.quiz.quiz.controller;
 
 import com.quiz.quiz.dto.request.QuizRequestDTO;
 import com.quiz.quiz.dto.response.QuizResponseDTO;
-import com.quiz.quiz.dto.response.UsuarioResponseDTO;
+import com.quiz.quiz.dto.response.QuizzesUsuarioResponseDTO;
 import com.quiz.quiz.model.QuizModel;
 import com.quiz.quiz.model.UsuarioModel;
 import com.quiz.quiz.service.QuizService;
@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/quizzes")
@@ -22,17 +25,32 @@ public class QuizController {
     @Autowired
     private ModelMapper modelMapper;
 
-    private UsuarioResponseDTO converterEmUsuarioResponseDTO(UsuarioModel usuario){
-        return  modelMapper.map(usuario, UsuarioResponseDTO.class);
+
+    private QuizzesUsuarioResponseDTO converterEmUsuarioResponseDTO(UsuarioModel usuario){
+        return  modelMapper.map(usuario, QuizzesUsuarioResponseDTO.class);
     }
 
     private QuizResponseDTO conveterEmQuizResponseDTO(QuizModel quiz){
         return modelMapper.map(quiz, QuizResponseDTO.class);
     }
 
+    private List<QuizResponseDTO> converterEmListaQuizResponseDTO(List<QuizModel> quizzes){
+        List<QuizResponseDTO> quizzesDTO = new ArrayList<>();
+        for(QuizModel quiz: quizzes){
+            quizzesDTO.add(modelMapper.map(quiz, QuizResponseDTO.class));
+        }
+        return  quizzesDTO;
+    }
+
+
     @GetMapping
     public ResponseEntity<?> listarQuizzes(){
-        return new ResponseEntity<>(quizService.listarQuizzes(), HttpStatus.OK);
+        return new ResponseEntity<>(converterEmListaQuizResponseDTO(quizService.listarQuizzes()), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/usuario/{codigoUsuario}")
+    public ResponseEntity<?> listarQuizzesDeumUsuario(@PathVariable Long codigoUsuario){
+        return new ResponseEntity<>(converterEmListaQuizResponseDTO(quizService.listarQuizzesDeUmUsuario(codigoUsuario)), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{codigo}")

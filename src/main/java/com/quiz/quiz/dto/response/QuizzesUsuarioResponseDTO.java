@@ -7,10 +7,9 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PerguntaResponseDTO {
+public class QuizzesUsuarioResponseDTO {
 
     private Long codigo;
-    private String questao;
-    private List<String> alternativas;
-    private Integer alternativaCorreta;
+    private String usuario;
+    private List<QuizResponseDTO> quizzes;
 }

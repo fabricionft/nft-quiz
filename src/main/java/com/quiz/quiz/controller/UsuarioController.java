@@ -29,9 +29,9 @@ public class UsuarioController {
 
     private List<UsuarioResponseDTO> converterEmListadeResponseDTO(List<UsuarioModel> usuarios) {
         List<UsuarioResponseDTO> usuarioDTO = new ArrayList<>();
-        for(UsuarioModel usuario: usuarios)
+        for(UsuarioModel usuario: usuarios) {
             usuarioDTO.add(modelMapper.map(usuario, UsuarioResponseDTO.class));
-
+        }
         return usuarioDTO;
     }
 

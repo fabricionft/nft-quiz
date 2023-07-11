@@ -3,8 +3,6 @@ package com.quiz.quiz.dto.response;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 public class QuizResponseDTO {
@@ -15,5 +13,4 @@ public class QuizResponseDTO {
     private String descricao;
     private Integer tag;
     private Integer quantidadeDePerguntas;
-    private List<PerguntaResponseDTO> perguntas;
 }
