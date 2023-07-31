@@ -1,0 +1,88 @@
+.containerRanking{
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-top: -10vh;
+}
+
+.margemRanking{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 20px 0;
+}
+
+.tituloRanking{
+  width: 100%;
+  text-align: left;
+  margin: 0 0 5px 25px; 
+  color: rgb(72, 70, 70);
+}
+
+.linha{
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.posicao, .usuario, .pontuacao{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.posicao{font-size: 20px;}
+.usuario{width: 50%;}
+
+.ouro, .prata, .bronze{
+  font-weight: bold;
+  color: rgb(234, 199, 0);
+  text-shadow: 0 0 25px gold, 0 0 18px gold;
+}
+
+.prata{color: silver; text-shadow: 0 0 25px silver, 0 0 18px silver;}
+.bronze{color: rgb(174, 52, 52); text-shadow: 0 0 25px rgb(171, 51, 51), 0 0 18px rgb(163, 50, 50);}
+
+.legenda{
+  font-size: initial;
+  font-weight: bold;
+}
+
+.info{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 15px 0 7.5px 0;
+}
+
+.iconInfo{width: 25px;}
+.textoInfo{
+  font-size: 13px;
+  margin: 0 0 0 10px;
+  text-align: center;
+}
+
+.aviso{
+  width: 240px;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.margemAviso{
+  width: 200px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+  .containerRanking{width: 100%;}
+}

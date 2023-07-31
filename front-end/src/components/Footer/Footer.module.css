@@ -1,0 +1,21 @@
+.containerFooter{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hover);
+  box-shadow: 0 2px 4px var(--hover), 0 8px 16px var(--hover);
+}
+
+.icon{
+  width: 35px;
+  margin: 0 7.5px;
+  cursor: pointer;
+}
+
+.icon:hover{
+  margin-bottom: 20px;
+  filter: brightness(85%);
+}

@@ -1,0 +1,17 @@
+.nota{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -27.5px;
+  left: -7.5px;
+  font-weight: bold;
+  font-size: 17.5px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.green{background-color: var(--correto);}
+.red{background-color: var(--errado);}

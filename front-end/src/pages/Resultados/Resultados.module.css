@@ -1,0 +1,81 @@
+.containerResultados{
+  position: relative;
+  width: 325px;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: -10vh;
+  z-index: 3;
+}
+
+.margemResultados{
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.tituloResultados{
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.avaliacao{
+  width: 100%;
+  margin: 20px 0 5px 0;
+}
+
+.linha, .linhaIcon{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.linhaIcon{
+  height: auto;
+  margin: 0 0 10px 0;
+}
+
+.iconAcertosErros{
+  height: 20px;
+}
+
+.acerto, .erro, .acertoIcon, .erroIcon{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4,174,123, 0.1);
+}
+
+.erro{background: rgba(255, 0, 0, 0.1);}
+
+.acertoIcon, .erroIcon{background: transparent;}
+
+.quantidadeAcertos{
+  color: #04ae7b;
+  font-weight: bold;
+}
+
+.quantidadeErros{
+  color: red;
+  font-weight: bold;
+}
+
+.respostas{
+  display: flex;
+  display: flex;
+  margin-top: 15px;
+}
+
+.textoQuestoes{margin: 0 20px 0 0;}
+
+@media screen and (max-width: 450px) {
+  .containerResultados{width: 100%;}
+}

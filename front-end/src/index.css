@@ -1,0 +1,86 @@
+*{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--textos);
+  text-decoration: none;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+  background-color: var(--elementos);
+}
+
+.root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button{
+  border: none;
+  background: var(--elementos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+button:hover{
+  background: var(--hover);
+}
+
+label{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--textos);
+  margin-bottom: 7.5px;
+}
+
+input, select, textarea{
+  width: calc(100% - 17px);
+  height: 40px;
+  padding-left: 10px;
+  border-radius: 8px;
+  border: 1px solid rgb(228, 228, 228);
+  background: var(--inputs);
+  cursor: pointer;
+  color: var(--textos);
+  outline: none;
+}
+
+button{
+  width: 100%;
+  height: 40px;
+}
+
+select{
+  width: 99%;
+}
+
+.aviso{
+  position: absolute;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  top: 45vh;
+  color: #fff;
+}
+
+:root{
+  --titulos: #170052;
+  --textos: rgb(106, 106, 106);
+  --elementos: rgb(165, 100, 255);
+  --claro: rgb(157, 87, 255, 0.1);
+  --hover: rgb(134, 73, 220);
+  --formularios: #fff;
+  --inputs: rgb(165, 100, 255, 0.1);
+  --sobreposicao: rgba(0, 0, 0, 0.35);
+  --correto: rgb(15, 227, 142);
+  --corretoHover: rgb(10, 198, 123);
+  --errado: rgb(255, 107, 91);
+  --erradoHover: rgb(255, 85, 66);
+}

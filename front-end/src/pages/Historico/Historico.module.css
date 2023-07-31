@@ -1,0 +1,86 @@
+.acoesHistorico{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.limparHistorico{
+  width: 125px;
+  background: var(--errado)
+}
+
+.limparHistorico:hover{background: var(--erradoHover)}
+
+.containerHistorico{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.margemResultado{
+  width: 85%;
+  margin: 25px 0;
+}
+
+.textoTag{
+  margin: 0;
+  width: 100%;
+  text-align: right;
+}
+
+.data{
+  display: flex;
+  align-items: center;
+  margin: 10px 0 0 0;
+}
+
+.iconData{
+  width: 17.5px;
+  margin-right: 7px;
+}
+
+.linha, .linhaIcon{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.linhaIcon{
+  margin: 20px 0 10px 0;
+  height: auto;
+}
+
+.iconAcertosErros{
+  height: 20px;
+}
+
+.acerto, .erro, .acertoIcon, .erroIcon{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4,174,123, 0.1);
+}
+
+.erro{background: rgba(255, 0, 0, 0.1);}
+
+.acertoIcon, .erroIcon{background: transparent;}
+
+.quantidadeAcertos{
+  color: #04ae7b;
+  font-weight: bold;
+}
+
+.quantidadeErros{
+  color: red;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .containerHistorico{
+    justify-content: space-between;
+  }
+}

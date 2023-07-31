@@ -1,0 +1,102 @@
+.botoes{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.btnAdcionar{
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 7.5px;
+  background: var(--elementos);
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--correto);
+}
+
+.btnAdcionar:hover{background: var(--corretoHover)}
+
+.perguntas{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.pergunta{
+  width: 31.5%;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  margin-top: 25px;
+  border-radius: 7.5px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 7%), 0 8px 16px rgb(0 0 0 / 7%);
+  margin: 0 0 30px 2.65%;
+}
+
+.pergunta:nth-child(3n + 1){margin-left: 0;}
+
+.margemPergunta{
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.divisor{
+  width: 75%;
+  border-radius: 7.5px;
+  background: rgb(249, 241, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.divisor:nth-child(2){
+  width: 20%;
+  margin-left: 5%;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.questao{
+  margin: 10px;
+}
+
+.alternativa{
+  margin: 0 10px 5px 10px;
+}
+
+.alternativa:nth-child(5){margin-bottom: 10px;}
+
+.correta{
+  width: fit-content;
+  font-weight: bold;
+  color: #04ae7b;
+  background: #04ae7b1e;
+}
+
+.btnExcluir{
+  width: 40px;
+  height: 40px;
+  background-color: var(--errado);
+}
+
+.btnExcluir:hover{background-color: var(--erradoHover)}
+
+@media screen and (max-width: 1050px) {
+  .perguntas{justify-content: space-between;}
+  .pergunta{width: 48%; margin-left: 0;}
+}
+
+@media screen and (max-width: 500px) {
+  .pergunta{width: 100%;}
+}

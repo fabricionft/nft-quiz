@@ -1,0 +1,108 @@
+.aciona{display: none;}
+
+.aciona:checked~.sobreporBarraMenu{
+  transform: translateX(100%);
+}
+
+.aciona:checked~.barraMenu{
+  transform: translateX(200%);
+}
+
+.sobreporBarraMenu{
+  z-index: 2;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: var(--sobreposicao);
+}
+
+.barraMenu{
+  top: 0;
+  left: -50%;
+  position: fixed;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, var(--elementos), rgb(213, 138, 253));
+  height: 100%;
+  z-index: 2;
+  transition: 0.5s linear;
+}
+
+.margemBarraMenu{
+  width: 85%;
+  height: 90%;
+}
+
+.detalhesLogin{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.botoesBarraMenu{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.botao{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.botao:hover{
+  background: var(--hover);
+}
+
+.imagemBotao, .textoBotao{
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.imagemBotao{justify-content: center;}
+.textoBotao{
+  width: 80%;
+}
+
+.texto, .textoLink{
+  color: #fff; 
+  margin: 0;
+  display: flex;
+}
+
+.textoLink{font-weight: bold; margin-right: 5px; cursor: pointer;}
+
+.icon{width: 25px;}
+
+.fechar{
+  cursor: pointer;
+  width: 30px;
+  position: absolute;
+  right: -40px;
+}
+
+@media screen and (max-width: 800px){
+  .barraMenu{
+    left: -100%;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .barraMenu{
+    left: -150%;
+    width: 75%;
+  }
+}

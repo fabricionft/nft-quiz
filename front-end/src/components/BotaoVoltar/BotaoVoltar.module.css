@@ -1,0 +1,26 @@
+.cabecalho{
+  position: absolute;
+  width: 100%;
+  top: -10vh;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.margemCabecalho{
+  width: 90%;
+  margin: 20px 0;
+  background: var(--elementos);
+}
+
+.btnVoltar{
+  color: #fff;
+  width: 30px;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iconVoltar{
+  width: 30px;
+}

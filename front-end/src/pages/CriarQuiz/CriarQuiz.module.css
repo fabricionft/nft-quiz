@@ -1,0 +1,14 @@
+.voltar{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  left: 5%;
+  top: 20px;
+  background: var(--elementos);
+  text-decoration: none;
+  border: 1px solid #fff;
+}

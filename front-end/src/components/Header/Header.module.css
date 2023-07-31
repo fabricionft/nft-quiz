@@ -1,0 +1,93 @@
+.containerHeader{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  background-color: var(--elementos);
+}
+
+.margemHeader{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.links{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: right;
+  width: 340px;
+  z-index: 1;
+}
+
+.texto{
+  color: #fff;
+  font-weight: bold;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  margin-left: 25px;
+  text-decoration: none;
+}
+
+.texto::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 0%;
+  height: 2.5px;
+  background: #fff;
+  transition: 0.5s;
+}
+
+.texto:hover:after{
+  display: initial;
+  width: 115%;
+}
+
+.especial{
+  font-weight: bold;
+  padding: 6px 10px;
+  background: #fff;
+  color: var(--elementos);
+  border-radius: 5px;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.especial:nth-child(2){margin-left: 25px;}
+
+.especial:hover{
+  background: rgb(246, 237, 255);
+}
+
+.linha{
+  width: 100%;
+  height: 6px;
+  background: var(--elementos);
+  border-radius: 0 0 20px 20px;
+  display: none;
+}
+
+.img{
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon{
+  width: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+@media screen and (max-width: 450px) {
+  .texto{display: none;}
+}

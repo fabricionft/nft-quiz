@@ -1,0 +1,58 @@
+.acoesQuizzes{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.buscar{
+  width: 150px;
+  height: 40px;
+  margin: 0;
+  background: #fff;;
+  margin-right: 45px;
+}
+
+details{height: 40px; cursor: pointer;}
+
+summary{
+  margin: 10px 0 0 10px;
+  font-weight: bold;
+}
+
+.info{
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: rgb(241, 229, 255);
+  z-index: 1;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.margemInfo{
+  width: 90%;
+  margin: 20px 0;
+}
+
+.textoInfo{
+  margin: 0;
+}
+
+.containerQuizzes{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .containerQuizzes{
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 459px) {
+  details{margin-top: 20px;}
+  .info{width: 100%;}
+}

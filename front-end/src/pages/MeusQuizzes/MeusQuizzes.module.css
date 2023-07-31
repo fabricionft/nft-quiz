@@ -1,0 +1,47 @@
+.acoesMeusQuizzes{
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.btnCriar{
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+  width: 125px;
+  height: 40px;
+  background: var(--correto);
+  text-decoration: none;
+}
+
+.btnCriar:hover{background: var(--corretoHover);}
+
+.ordem{
+  width: 150px;
+  height: 40px;
+  background: #fff;
+  color: black;
+  margin-left: 15px;
+}
+
+.containerQuizzes{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .containerQuizzes{
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .btnCriar, .ordem{width: 48.5%;}
+}

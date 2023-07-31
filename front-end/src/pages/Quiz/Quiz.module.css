@@ -1,0 +1,100 @@
+/*Aviso*/
+.aviso{
+  width: 300px;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  margin-top: -5vh;
+}
+
+.aviso p strong{margin: 0;}
+
+.margemAviso{
+  margin: 30px 15px;
+}
+
+.btnQuiz{
+  width: 150px;
+  height: 45px;
+  margin-top: 30px;
+  background-color: var(--correto);
+}
+
+.btnQuiz:hover{background-color: var(--corretoHover)}
+
+
+/*Quiz*/
+.quiz{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 7%), 0 8px 16px rgb(0 0 0 / 7%);
+  border-radius: 10px;
+  margin-top: -10vh;
+}
+
+.margemQuiz{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 25px;
+  margin: 25px 0;
+}
+
+.indice{margin: 0 0 15px 0;}
+
+.pergunta, .alternativas{
+  width: 100%;
+  display: flex;
+}
+
+.pergunta{
+  background: rgb(249, 242, 255);
+  margin-bottom: 30px;
+  padding: 20px 0;
+}
+
+.alternativas{
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.alternativa{
+  width: 48.5%;
+  padding: 25px 0;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border: 1px solid rgb(232, 209, 255);
+  border-radius: 5px;
+}
+
+.alternativa:hover{
+  background: rgb(245, 230, 255);
+}
+
+.texto{
+  color: rgb(147, 145, 145);
+  margin: 0;
+  margin: 0 20px
+}
+
+.btnReset{
+  margin-top: 5px;
+  width: 40px;
+}
+
+.icon{
+  width: 22.5px;
+}
+
+@media screen and (max-width: 600px){
+  .quiz, .aviso{width: 100%;}
+  .margemQuiz{padding: 0 15px; margin: 20px 0;}
+  .alternativa{width: 100%;}
+}
+
+@media screen and (max-width: 280px){
+  .aviso{width: 100%;}
+}

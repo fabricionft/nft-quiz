@@ -1,0 +1,40 @@
+.card{
+  width: 23.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+
+  border-radius: 5px;
+  margin: 0 2% 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 5%), 0 8px 16px rgb(0 0 0 / 5%);
+}
+
+.card:nth-child(4n + 4){margin-right: 0;}
+
+@media screen and (max-width: 1100px) {
+  .card:nth-child(4n + 4){margin-right: 2%;}
+  .card:nth-child(3n + 3){margin-right: 0;}
+
+  .card{
+    margin-right: 2%;
+    width: 32%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card{
+    width: 47.5%;
+    margin-right: 0;
+  }
+
+  .card:nth-child(4n + 4){margin-right: 0}
+  .card:nth-child(3n + 3){margin-right: 0;}
+}
+
+@media screen and (max-width: 450px) {
+  .card{
+    width: 100%
+  }
+}
